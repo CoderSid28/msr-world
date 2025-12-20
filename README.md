@@ -4,10 +4,18 @@
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
   <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-  <img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" />
 </p>
 
 Welcome to the official repository for **MSR WORLD**, a high-performance creative portfolio showcasing professional cinematography, video editing, and modern web development.
+
+---
+
+## 📽️ Official Channel
+Visit our channel for the latest in cinematic storytelling and professional video production:
+
+<a href="https://www.youtube.com/@msrworldstudios">
+  <img src="https://img.shields.io/badge/YouTube-MSR%20WORLD%20STUDIOS-red?style=for-the-badge&logo=youtube&logoColor=white" alt="MSR WORLD YouTube" />
+</a>
 
 ---
 
@@ -23,17 +31,10 @@ Welcome to the official repository for **MSR WORLD**, a high-performance creativ
 - **Fully Responsive:** Tailored experience for Desktop, Tablet, and Mobile.
 
 ## 🛠️ Tech Stack
-- **Frontend:** React.js
-- **Build Tool:** Vite
-- **Styling:** Tailwind CSS
+- **Frontend:** React.js + Vite
+- **Styling:** Tailwind CSS (Modern Utility-first CSS)
 - **Icons:** Lucide React
 - **Deployment:** Netlify
 
-## 📂 Project Structure
-```text
-├── public/          # Assets like favicon and logos
-├── src/
-│   ├── components/  # UI Components (Cards, Buttons, Layout)
-│   ├── App.jsx      # Main Application logic
-│   └── index.css    # Tailwind configurations
-└── package.json     # Dependencies & Scripts
+---
+*Developed with focus on visual excellence by MSR WORLD STUDIOS.*
