@@ -15,6 +15,13 @@ const AboutSection = () => {
       frontImage: "/brother.png",
       description: "The rhythmic heartbeat of our films. Rahul specializes in high-energy pacing and precision post-production."
     },
+     {
+     
+      name: "Prabhat Sharma", 
+      role: "Writer / Screenplay Writer",
+      frontImage: "/brother00.jpg",
+      description: "Architect of our narratives, crafting the intricate dialogues and screenplay structures that define our stories."
+    },
     {
       name: "Saurabh Tiwari",
       role: "Junior Actor",
@@ -33,6 +40,7 @@ const AboutSection = () => {
       frontImage: "/brother5.png",
       description: "A versatile talent focused on character depth and supporting narrative structure."
     }
+   
   ];
 
   return (
