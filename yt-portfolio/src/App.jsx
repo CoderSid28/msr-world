@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { 
   Film, Video, Tv, Layers, Cpu, Box, Share2, 
-  TrendingUp, Clock, FileText, Play, Menu, X, ArrowUp, Youtube 
+  TrendingUp, Clock, FileText, Play, Menu, X, ArrowUp, Youtube, BookOpen 
 } from 'lucide-react';
+import Atropos from 'atropos/react';
+import useSound from 'use-sound';
+import 'atropos/css';
 
 // Component Imports
 import FilmCard from "./components/FilmCard";
@@ -25,6 +28,112 @@ const CustomCursor = () => {
       className="fixed w-8 h-8 border border-primary rounded-full pointer-events-none z-[9999] transition-transform duration-150 ease-out mix-blend-difference hidden lg:block"
       style={{ left: pos.x, top: pos.y, transform: 'translate(-50%, -50%)' }}
     />
+  );
+};
+
+// --- BLOG SECTION ---
+const BlogSection = () => {
+  // Sound setup for the 3D hover
+  const [playHover] = useSound('/hover-whoosh.mp3', { 
+    volume: 0.15, 
+    interrupt: true 
+  });
+
+  return (
+    <section className="py-24 bg-base-100 relative overflow-hidden" id="journal">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="mb-16">
+          <p className="text-[10px] uppercase tracking-[0.8em] text-primary font-black mb-4">Written Works</p>
+          <h2 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter text-base-content leading-none">
+            The Production <span className="text-primary text-outline-sm">Journal</span>
+          </h2>
+        </div>
+
+        <div className="group relative bg-base-300/30 border border-white/5 p-8 md:p-12 rounded-[2.5rem] overflow-hidden flex flex-col lg:flex-row items-center gap-16 hover:border-primary/40 transition-all duration-700">
+          
+          {/* Content Side */}
+          <div className="flex-1 text-center md:text-left z-20">
+            <div className="flex items-center gap-3 justify-center md:justify-start mb-8">
+               <div className="bg-[#ff5722] p-2.5 rounded-xl shadow-[0_0_20px_rgba(255,87,34,0.4)]">
+                  <BookOpen size={22} className="text-white" />
+               </div>
+               <span className="text-[10px] font-black tracking-[0.3em] opacity-50 uppercase text-white">Production Pipeline</span>
+            </div>
+            
+            <h3 className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter text-white mb-6 leading-[0.9] lg:max-w-md">
+              From Concept To <span className="text-primary">Final Cut</span>
+            </h3>
+            
+            <p className="text-white/40 font-bold text-xs uppercase tracking-widest mb-10 leading-relaxed max-w-xl">
+              Explore the MSR methodology. Our journal documents every phase of the filmmaking tree—from the first script draft to complex VFX compositing and final sound mastering.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <a 
+                href="https://msrworldstudios.blogspot.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group/btn relative overflow-hidden bg-primary px-10 py-4 rounded-xl transition-all duration-300 active:scale-95 shadow-[0_0_20px_rgba(255,77,0,0.2)]"
+              >
+                <span className="relative z-10 text-black font-black italic uppercase tracking-widest text-sm">Visit Blogspot</span>
+                <div className="absolute inset-0 bg-white translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></div>
+              </a>
+            </div>
+          </div>
+
+          {/* ATROPOS 3D IMAGE SIDE WITH PARALLAX & SOUND */}
+          <div className="flex-1 relative w-full max-w-2xl px-4 md:px-0">
+            <Atropos 
+              activeOffset={40} 
+              shadow={true} 
+              shadowOffset={50}
+              highlight={true} 
+              onEnter={() => playHover()}
+              className="my-atropos-journal cursor-pointer"
+            >
+              <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0a] p-3 shadow-2xl">
+                
+                {/* LAYER 1: The Main Flowchart Image (Deepest) */}
+                <img 
+                  src="/journal.jpg" 
+                  alt="MSR Production Tree" 
+                  className="w-full h-auto rounded-2xl opacity-80"
+                  data-atropos-offset="-3"
+                />
+
+                {/* LAYER 2: Middle Floating UI Frame */}
+                <div 
+                  className="absolute inset-0 pointer-events-none flex items-center justify-center"
+                  data-atropos-offset="7"
+                >
+                  <div className="w-[94%] h-[94%] border border-primary/10 rounded-2xl shadow-[inset_0_0_40px_rgba(255,77,0,0.05)]"></div>
+                  
+                  {/* Subtle Grid Pattern overlay */}
+                  <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay"></div>
+                </div>
+
+                {/* LAYER 3: Top Layer Floating Accents (High Offset) */}
+                <div 
+                  className="absolute inset-0 pointer-events-none"
+                  data-atropos-offset="14"
+                >
+                  {/* Digital Scanlines */}
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.02),rgba(0,255,0,0.01),rgba(0,0,255,0.02))] bg-[length:100%_4px,4px_100%] opacity-40"></div>
+                  
+                  {/* Glowing Corners */}
+                  <div className="absolute top-6 left-6 w-6 h-6 border-t-2 border-l-2 border-primary/60"></div>
+                  <div className="absolute bottom-6 right-6 w-6 h-6 border-b-2 border-r-2 border-primary/60"></div>
+                </div>
+
+              </div>
+            </Atropos>
+            
+            {/* Ambient Background Glow */}
+            <div className="absolute -inset-10 bg-primary/10 blur-[120px] rounded-full -z-10 opacity-30 group-hover:opacity-60 transition-opacity duration-1000"></div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -147,6 +256,7 @@ function App() {
   const navLinks = [
     { name: "Works", href: "#gallery" },
     { name: "Concept-Art", href: "#art" },
+    { name: "Journal", href: "#journal" },
     { name: "Expertise", href: "#expertise" },
     { name: "Analytics", href: "#analytics" },
     { name: "Team", href: "#about" },
@@ -156,7 +266,6 @@ function App() {
     <div className="min-h-screen bg-base-200 transition-colors duration-500 overflow-x-hidden scroll-smooth scroll-pt-20 cinematic-texture selection:bg-primary selection:text-black">
       <CustomCursor />
       
-      {/* Proper Navbar */}
       <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 border-b ${
         scrolled ? "bg-base-100/90 backdrop-blur-2xl py-3 border-white/5 shadow-2xl" : "bg-transparent py-6 border-transparent"
       }`}>
@@ -211,10 +320,10 @@ function App() {
 
       <ArtGallery />
       <ContentCategories />
+      <BlogSection />
       <AnalyticsSection />
       <AboutSection />
 
-      {/* --- FOOTER (Fixed for Dark Theme Visibility) --- */}
       <footer className="relative bg-[#050505] pt-32 pb-12 overflow-hidden border-t border-white/5" id="contact">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 text-[18vw] font-black uppercase italic text-white/[0.01] pointer-events-none whitespace-nowrap select-none leading-none">
           MSR WORLD
@@ -222,7 +331,6 @@ function App() {
 
         <div className="max-w-7xl mx-auto px-6 relative z-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
-            {/* Get In Touch */}
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
               <p className="text-[10px] uppercase tracking-[0.8em] text-primary font-black mb-8 animate-pulse">Contact Me</p>
               <button onClick={handleCopy} className="group relative">
@@ -236,69 +344,56 @@ function App() {
               </button>
             </div>
 
-            {/* Subscribe Section (Fixed Contrast) */}
-            <div className="flex flex-col items-center lg:items-end">
-              <a 
-                href="https://www.youtube.com/@msrworldstudios" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group flex flex-col items-center bg-white/[0.05] border border-white/10 p-8 rounded-3xl hover:border-red-600/50 transition-all duration-500 w-full max-w-md relative overflow-hidden backdrop-blur-md"
-              >
+            <div className="flex flex-col md:flex-row items-center lg:items-end gap-6 w-full lg:justify-end">
+              <a href="https://msrworldstudios.blogspot.com/" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center bg-white/[0.05] border border-white/10 p-8 rounded-3xl hover:border-orange-500/50 transition-all duration-500 w-full max-w-sm relative overflow-hidden backdrop-blur-md">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600/10 blur-[80px] -mr-16 -mt-16 group-hover:bg-orange-600/20 transition-all duration-500"></div>
+                <div className="flex items-center gap-4 mb-6 w-full text-white">
+                   <div className="bg-[#ff5722] p-3 rounded-2xl shadow-[0_0_25px_rgba(255,87,34,0.4)] group-hover:scale-110 transition-transform">
+                      <BookOpen className="text-white" size={28} />
+                   </div>
+                   <div className="text-left">
+                      <h4 className="font-black italic uppercase tracking-tighter text-2xl">MSR <span className="text-[#ff5722]">BLOG</span></h4>
+                      <p className="text-[9px] font-black uppercase tracking-[0.2em] text-white/50">OFFICIAL JOURNAL</p>
+                   </div>
+                </div>
+                <div className="w-full bg-[#ff5722] text-white font-black text-[11px] uppercase tracking-[0.4em] py-4 rounded-xl text-center group-hover:bg-[#e64a19] shadow-lg transition-all">Read Articles</div>
+              </a>
+
+              <a href="https://www.youtube.com/@msrworldstudios" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center bg-white/[0.05] border border-white/10 p-8 rounded-3xl hover:border-red-600/50 transition-all duration-500 w-full max-w-sm relative overflow-hidden backdrop-blur-md">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-red-600/10 blur-[80px] -mr-16 -mt-16 group-hover:bg-red-600/20 transition-all duration-500"></div>
-                
-                <div className="flex items-center gap-4 mb-6">
+                <div className="flex items-center gap-4 mb-6 w-full text-white">
                    <div className="bg-red-600 p-3 rounded-2xl shadow-[0_0_25px_rgba(220,38,38,0.4)] group-hover:scale-110 transition-transform">
                       <Youtube className="text-white" size={28} />
                    </div>
                    <div className="text-left">
-                      {/* Fixed: Forced white color for dark theme visibility */}
-                      <h4 className="font-black italic uppercase tracking-tighter text-2xl text-white">
-                        MSR <span className="text-red-600">WORLD</span>
-                      </h4>
-                      <p className="text-[9px] font-black uppercase tracking-[0.2em] text-white/50 group-hover:text-white/80 transition-colors">
-                        STUDIOS CHANNEL
-                      </p>
+                      <h4 className="font-black italic uppercase tracking-tighter text-2xl">MSR <span className="text-red-600">WORLD</span></h4>
+                      <p className="text-[9px] font-black uppercase tracking-[0.2em] text-white/50">STUDIOS CHANNEL</p>
                    </div>
                 </div>
-                <div className="w-full bg-red-600 text-white font-black text-[11px] uppercase tracking-[0.4em] py-4 rounded-xl text-center group-hover:bg-red-700 shadow-lg transition-all active:scale-[0.98]">
-                  Subscribe for Updates
-                </div>
+                <div className="w-full bg-red-600 text-white font-black text-[11px] uppercase tracking-[0.4em] py-4 rounded-xl text-center group-hover:bg-red-700 shadow-lg transition-all">Subscribe Now</div>
               </a>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 border-t border-white/5 pt-16">
             <div className="flex flex-col gap-6">
-              <div className="font-black text-3xl italic tracking-tighter uppercase text-white">
-                MSR<span className="text-primary">WORLD</span>
-              </div>
-              <p className="text-[10px] uppercase font-bold tracking-widest text-white/30 leading-loose">
-                Independent Filmmaker & VFX Artist specializing in cinematic experiences.
-              </p>
+              <div className="font-black text-3xl italic tracking-tighter uppercase text-white">MSR<span className="text-primary">WORLD</span></div>
+              <p className="text-[10px] uppercase font-bold tracking-widest text-white/30 leading-loose">Independent Filmmaker & VFX Artist specializing in cinematic experiences.</p>
             </div>
-
             <div className="flex flex-col gap-8">
               <span className="text-[11px] font-black uppercase tracking-[0.5em] text-primary">Sitemap</span>
               <div className="grid grid-cols-2 gap-4">
                 {navLinks.map(link => (
-                  <a key={link.name} href={link.href} className="text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-primary transition-colors">
-                    {link.name}
-                  </a>
+                  <a key={link.name} href={link.href} className="text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-primary transition-colors">{link.name}</a>
                 ))}
               </div>
             </div>
-
             <div className="flex flex-col items-center md:items-end justify-between">
-              <button 
-                onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
-                className="group flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-full hover:border-primary hover:text-primary transition-all shadow-xl hover:bg-white/10"
-              >
+              <button onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="group flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-full hover:border-primary hover:text-primary transition-all shadow-xl">
                 <span className="text-[10px] font-black uppercase tracking-widest text-white/60 group-hover:text-primary transition-colors">Back to Top</span>
                 <ArrowUp size={16} className="text-white/60 group-hover:text-primary group-hover:-translate-y-1 transition-all" />
               </button>
-              <div className="mt-8 text-right text-white/10 text-[9px] font-black uppercase tracking-widest">
-                © 2025 MSR WORLD PRODUCTIONS
-              </div>
+              <div className="mt-8 text-right text-white/10 text-[9px] font-black uppercase tracking-widest">© 2026 MSR WORLD PRODUCTIONS</div>
             </div>
           </div>
         </div>
